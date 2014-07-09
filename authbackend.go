@@ -3,7 +3,6 @@ package auth
 import (
   "code.google.com/p/go.crypto/scrypt"
   "encoding/json"
-  //"github.com/astaxie/beego/session"
   "net/http"
   "regexp"
   "time"
@@ -35,8 +34,8 @@ func encryptpass(pass string) string {
 }
 
 func (self *User) check(username, pass string) bool {
-  //TODO: query para obtener el usuario 
   /*
+  TODO: query para obtener el usuario 
   if self.pass == encryptpass(pass) {
     return true
   }
