@@ -3,7 +3,7 @@ package auth
 import (
   //"encoding/json"
   //"fmt"
-	"github.com/astaxie/beego"
+  "github.com/astaxie/beego"
   "github.com/astaxie/beego/session"
   "time"
 )
