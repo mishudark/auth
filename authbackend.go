@@ -1,15 +1,14 @@
-package base
+package auth
 
 import (
   "code.google.com/p/go.crypto/scrypt"
   "encoding/json"
-  "github.com/astaxie/beego/session"
+  //"github.com/astaxie/beego/session"
   "net/http"
   "regexp"
   "time"
 )
 
-var localSession *session.Manager
 
 type User struct {
   Username string
@@ -59,7 +58,7 @@ func (self *User) authenticate(username, pass string) bool {
   return true
 }
 
-func (self *User) login(w http.ResponseWriter, r *http.Request) bool {
+func (self *User) Login(w http.ResponseWriter, r *http.Request) bool {
   now := time.Now().Format("2006-01-02 15:04:05")
 
   self.Last_login = now
@@ -67,7 +66,7 @@ func (self *User) login(w http.ResponseWriter, r *http.Request) bool {
   self.Is_anonymous = false
 
   //sess := globalSessions.SessionStart(userCtrl.Ctx.ResponseWriter, userCtrl.Ctx.Request)
-  sess := localSession.SessionStart(w, r)
+  sess := globalSessions.SessionStart(w, r)
   encoded, _ := json.Marshal(self)
   sess.Set("user", encoded)
 

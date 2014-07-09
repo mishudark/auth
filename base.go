@@ -1,4 +1,4 @@
-package base
+package auth
 
 import (
   //"encoding/json"
@@ -16,7 +16,7 @@ var globalSessions *session.Manager
 
 type BaseController struct {
 	beego.Controller
-  sess session.SessionStore
+  Sess session.SessionStore
 }
 
 func (self *BaseController) Session() {
@@ -39,5 +39,5 @@ func (self *BaseController) Session() {
     sess = globalSessions.SessionStart(w, r)
   }
 
-  self.sess = sess
+  self.Sess = sess
 }
